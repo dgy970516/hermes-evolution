@@ -1,0 +1,17 @@
+# Hermes 数据库连接配置
+databases:
+  - name: "online"
+    type: "mysql"
+    host: "rm-bp19s2i3m462b7uz7no.mysql.rds.aliyuncs.com"
+    port: 3306
+    database: "ai"
+    username: "root"
+    password: "5BaDAw7un!*y6F&"
+
+  - name: "local"
+    type: "mysql"
+    host: "localhost"
+    port: 3306
+    database: "ai"
+    username: "root"
+    password: ""

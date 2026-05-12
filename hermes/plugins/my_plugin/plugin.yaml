@@ -1,0 +1,6 @@
+name: my_plugin
+version: 1.0.0
+description: 我的第一个 Hermes 插件
+author: user
+dependencies:
+  - requests

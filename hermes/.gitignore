@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.so
+
+# Environment
+.env
+.env.local
+*.env.local
+
+# Data
+data/sessions/
+data/knowledge/
+data/workspaces/
+data/exports/
+data/memory/
+data/context/
+data/evolution/
+data/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store
+*.DS_Store
+
+# Logs
+*.log
+
+# Hermes auto-generated skills
+custom_skills/_auto_*
+
+# Test files
+test_*.py
+quick_test.py

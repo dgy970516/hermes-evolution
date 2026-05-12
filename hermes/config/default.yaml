@@ -1,0 +1,63 @@
+server:
+  host: "0.0.0.0"
+  port: 9000
+  log_level: "INFO"
+
+# 工作区根目录: 自动扫描此目录下所有项目
+workspace_root: "D:\\project"
+
+# Hermes 自身使用的 AI 模型 (用于意图识别、摘要压缩、指令学习等)
+# 与执行引擎 (opencode/claude-code) 是独立的
+ai:
+  provider: "${HERMES_AI_PROVIDER}"  # openai | anthropic | openai_compatible
+  model: "${HERMES_AI_MODEL}"
+  api_key: "${HERMES_AI_API_KEY}"
+  base_url: "${HERMES_AI_BASE_URL}"  # 可选，兼容 OpenAI 格式的第三方
+  max_tokens: 4096
+  temperature: 0.1  # 意图识别用低温度保证稳定性
+
+im:
+  feishu:
+    enabled: true
+    app_id: "${FEISHU_APP_ID}"
+    app_secret: "${FEISHU_APP_SECRET}"
+    verification_token: "${FEISHU_VERIFICATION_TOKEN}"
+    encrypt_key: "${FEISHU_ENCRYPT_KEY}"
+  wechat:
+    enabled: false
+
+engines:
+  default: "${HERMES_DEFAULT_ENGINE}"
+  opencode:
+    executable: "opencode"
+    model: "deepseek-v4-flash"
+    timeout: 600
+    workspace: "./data/workspaces"
+  claude_code:
+    executable: "claude"
+    model: "claude-sonnet-4-20250514"
+    timeout: 600
+    workspace: "./data/workspaces"
+
+context:
+  level1_window_size: 20
+  level2_max_tokens: 16384
+  level3:
+    enabled: true
+    vector_db_path: "./data/knowledge"
+    top_k: 5
+    embedding_model: "BAAI/bge-small-zh-v1.5"
+
+# 数据库连接配置
+databases_config: "./config/databases.yaml"
+
+# 系统操作配置
+operator:
+  ide_default: "idea"  # 未指定时的默认 IDE
+
+evolution:
+  instruction_learning: true
+  knowledge_base: true
+  workflow_generation: true
+  tool_provisioning: true
+  performance_analysis: true
