@@ -292,9 +292,9 @@ class Hermes:
         session = self.context_manager.get_or_create_session(user_id)
         session_str = session.to_system_prompt()
         # 如果对话过长，压缩历史
-        if len(session.level1.turns) > 15 and self.context_compressor:
-            compressed = await self.context_compressor.compress(session.level1.turns, budget=10)
-            session.level1.turns = compressed
+        if len(session.turns) > 15 and self.context_compressor:
+            compressed = await self.context_compressor.compress(session.turns, budget=10)
+            session.turns = compressed
 
         # ── Step 2: Find matching skill ──
         ctx = SkillContext(
