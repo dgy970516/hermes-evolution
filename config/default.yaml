@@ -4,7 +4,8 @@ server:
   log_level: "INFO"
 
 # 工作区根目录: 自动扫描此目录下所有项目
-workspace_root: "D:\\project"
+# 不设置时自动使用 hermes 所在的目录
+workspace_root: ""
 
 # Hermes 自身使用的 AI 模型 (用于意图识别、摘要压缩、指令学习等)
 # 与执行引擎 (opencode/claude-code) 是独立的

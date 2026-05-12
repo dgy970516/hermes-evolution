@@ -15,6 +15,7 @@ dependencies = [
     "openpyxl>=3.1.0",
     "pyautogui>=0.9.54",
     "pillow>=10.0.0",
+    "duckduckgo_search>=6.0.0",
 ]
 
 [project.optional-dependencies]

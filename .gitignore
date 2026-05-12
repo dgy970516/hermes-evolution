@@ -42,3 +42,5 @@ custom_skills/_auto_*
 # Test files
 test_*.py
 quick_test.py
+.env
+.env

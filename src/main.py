@@ -1,14 +1,12 @@
 import asyncio
 import logging
 import os
-import sys
 from pathlib import Path
 
 import yaml
 
 from src.engines.opencode_engine import OpencodeEngine
 from src.engines.claude_code_engine import ClaudeCodeEngine
-from src.engines.hermes_engine import HermesDirectEngine
 from src.evolution.self_upgrade import SelfUpgradeEngine
 from src.memory.memory_store import MemoryStore
 from src.plugin.plugin_manager import PluginManager
@@ -16,7 +14,7 @@ from src.executor.iterative_executor import IterativeExecutor
 from src.im_gateway.feishu.adapter import FeishuAdapter
 from src.llm import LLMClient, LLMConfig
 from src.operator.ide_launcher import IDELauncher
-from src.operator.db_client import DatabaseClient, DatabaseConfig
+from src.operator.db_client import DatabaseClient
 from src.operator.system_ops import SystemOperator
 from src.processor.intent_recognizer import IntentRecognizer
 from src.processor.project_matcher import ProjectMatcher

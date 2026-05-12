@@ -46,8 +46,10 @@ class IterativeExecutor:
         self.llm_client = llm_client
         self.system_ops = system_ops
 
-    async def execute(self, user_request: str, work_dir: str = "D:\\project",
+    async def execute(self, user_request: str, work_dir: str = "",
                       max_rounds: int = 5) -> AsyncIterator[str]:
+        if not work_dir:
+            work_dir = os.getcwd()
         """Iterative execution: LLM plans → execute → feedback → continue"""
         if not self.llm_client:
             yield "❌ LLM not configured"

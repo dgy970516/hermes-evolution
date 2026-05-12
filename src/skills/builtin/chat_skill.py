@@ -1,4 +1,5 @@
 import logging
+import os
 
 from src.skills.base import Skill, SkillContext
 from src.skills.generator import SkillGenerator
@@ -15,20 +16,15 @@ class ChatSkill(Skill):
     async def can_handle(self, ctx: SkillContext) -> bool:
         return True
 
-    def _detect_work_dir(self, text: str) -> str:
-        import re
+    def _detect_work_dir(self, text: str, fallback: str = "") -> str:
+        import re as _re
         from pathlib import Path
-        m = re.search(r'([A-Za-z]:\\[^\s,，。]*)', text)
+        m = _re.search(r'([A-Za-z]:\\[^\s,，。]*)', text)
         if m:
             p = Path(m.group(1))
             if p.exists():
                 return str(p)
-        root = Path("D:\\project")
-        if root.exists():
-            for child in root.iterdir():
-                if child.is_dir() and child.name.lower() in text.lower():
-                    return str(child)
-        return "D:\\project"
+        return fallback or os.getcwd()
 
     async def execute(self, ctx: SkillContext) -> None:
         hermes = ctx.hermes
@@ -93,7 +89,8 @@ class ChatSkill(Skill):
             "找一下", "查找", "搜索", "分析", "对比",
         ])
         if needs_iteration and hermes.iterative_executor:
-            work_dir = self._detect_work_dir(ctx.text)
+            work_root = str(hermes.scanner.workspace_root) if hermes.scanner else ""
+            work_dir = self._detect_work_dir(ctx.text, work_root)
             async for chunk in hermes.iterative_executor.execute(
                 ctx.text, work_dir=work_dir,
             ):
